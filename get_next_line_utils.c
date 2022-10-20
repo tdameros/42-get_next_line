@@ -6,11 +6,10 @@
 /*   By: tdameros <tdameros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 23:06:16 by tdameros          #+#    #+#             */
-/*   Updated: 2022/10/21 00:49:00 by tomy             ###   ########lyon.fr   */
+/*   Updated: 2022/10/21 00:58:28 by tomy             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)

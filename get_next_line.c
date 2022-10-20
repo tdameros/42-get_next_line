@@ -6,20 +6,20 @@
 /*   By: tdameros <tdameros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:13:57 by tdameros          #+#    #+#             */
-/*   Updated: 2022/10/21 00:40:20 by tdameros         ###   ########lyon.fr   */
+/*   Updated: 2022/10/21 00:50:04 by tomy             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_is_empty_buff(char *buffer)
+int	ft_is_empty_buff(char *buf)
 {
 	size_t	index;
 
 	index = 0;
 	while (index < BUFFER_SIZE)
 	{
-		if (buffer[index] != '\0')
+		if (buf[index] != '\0')
 			return (0);
 		index++;
 	}
