@@ -6,18 +6,47 @@
 /*   By: tdameros <tdameros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:13:57 by tdameros          #+#    #+#             */
-/*   Updated: 2022/10/21 00:50:04 by tomy             ###   ########lyon.fr   */
+/*   Updated: 2022/11/10 22:02:12 by tdameros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <unistd.h>
 
-int	ft_is_empty_buff(char *buf)
+char	*get_next_line(int fd)
+{
+	static char	buf[BUFFER_SIZE];
+	char		*line;
+	char		*line_temp;
+	int			is_line;
+
+	if (fd < 0)
+		return (NULL);
+	if (is_empty_buf(buf, BUFFER_SIZE) && read(fd, buf, BUFFER_SIZE) <= 0)
+		return (NULL);
+	line = extract_line_in_buf(buf, BUFFER_SIZE, &is_line);
+	if (line == NULL)
+		return (NULL);
+	while (is_line == 0)
+	{
+		if (read(fd, buf, BUFFER_SIZE) == 0)
+			return (line);
+		line_temp = extract_line_in_buf(buf, BUFFER_SIZE, &is_line);
+		if (line_temp == NULL)
+			return (free_ret_null(line, NULL));
+		line = strjoin_free(line, line_temp);
+		if (line == NULL)
+			return (NULL);
+	}
+	return (line);
+}
+
+int	is_empty_buf(char *buf, size_t buf_size)
 {
 	size_t	index;
 
 	index = 0;
-	while (index < BUFFER_SIZE)
+	while (index < buf_size)
 	{
 		if (buf[index] != '\0')
 			return (0);
@@ -26,19 +55,19 @@ int	ft_is_empty_buff(char *buf)
 	return (1);
 }
 
-char	*extract_line(char *buf, size_t buf_size, int *is_line)
+char	*extract_line_in_buf(char *buf, size_t buf_size, int *is_line)
 {
-	char	*substr;
+	char	*line;
 	size_t	start;
 	size_t	len;
 
-	start = ft_start_stri(buf, buf_size);
-	len = ft_len_stri(buf, start, buf_size);
-	substr = ft_substr(buf, start, len);
-	if (substr == NULL)
+	start = line_start_in_buf(buf, buf_size);
+	len = line_len_in_buf(buf, buf_size, start);
+	line = subline_in_buf(buf, start, len);
+	if (line == NULL)
 		return (NULL);
-	*is_line = substr[len - 1] == '\n';
-	return (substr);
+	*is_line = line[len - 1] == '\n';
+	return (line);
 }
 
 char	*free_ret_null(void *ptr1, void *ptr2)
@@ -48,32 +77,4 @@ char	*free_ret_null(void *ptr1, void *ptr2)
 	if (ptr2 != NULL)
 		free(ptr2);
 	return (NULL);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	buf[BUFFER_SIZE];
-	int			is_line;
-	char		*line;
-	char		*line_temp;
-
-	if (fd < 0)
-		return (NULL);
-	if (ft_is_empty_buff(buf) && read(fd, buf, BUFFER_SIZE) <= 0)
-		return (NULL);
-	line = extract_line(buf, BUFFER_SIZE, &is_line);
-	if (line == NULL)
-		return (NULL);
-	while (is_line == 0)
-	{
-		if (read(fd, buf, BUFFER_SIZE) == 0)
-			return (line);
-		line_temp = extract_line(buf, BUFFER_SIZE, &is_line);
-		if (line_temp == NULL)
-			return (free_ret_null(line, NULL));
-		line = ft_strjoin(line, line_temp);
-		if (line == NULL)
-			return (NULL);
-	}
-	return (line);
 }

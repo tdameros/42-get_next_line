@@ -6,7 +6,7 @@
 /*   By: tdameros <tdameros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 23:23:03 by tdameros          #+#    #+#             */
-/*   Updated: 2022/10/21 00:50:39 by tdameros         ###   ########lyon.fr   */
+/*   Updated: 2022/11/10 22:03:41 by tdameros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 # define GET_NEXT_LINE_H
 
 # include <stdlib.h>
-# include <unistd.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char *s, size_t start, size_t len);
-size_t	ft_start_stri(char *buf, size_t buf_size);
-size_t	ft_len_stri(char *buf, size_t start, size_t buf_size);
+char	*strjoin_free(char *s1, char *s2);
 
-int		ft_is_empty_buff(char *buf);
-char	*extract_line(char *buf, size_t buf_size, int *is_line);
+char	*subline_in_buf(char *buf, size_t start, size_t len);
+size_t	line_start_in_buf(char *buf, size_t buf_size);
+size_t	line_len_in_buf(char *buf, size_t buf_size, size_t start);
+char	*extract_line_in_buf(char *buf, size_t buf_size, int *is_line);
+int		is_empty_buf(char *buf, size_t buf_size);
+
 char	*free_ret_null(void *ptr1, void *ptr2);
 char	*get_next_line(int fd);
 
