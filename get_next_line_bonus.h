@@ -6,7 +6,7 @@
 /*   By: tdameros <tdameros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 23:23:03 by tdameros          #+#    #+#             */
-/*   Updated: 2022/11/10 23:44:16 by tdameros         ###   ########lyon.fr   */
+/*   Updated: 2022/11/11 12:53:37 by tdameros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
-# ifndef OPEN_MAX
-#  define OPEN_MAX 1024
+
+# if BUFFER_SIZE > 10000000
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 10000000
 # endif
 
-# if OPEN_MAX > 10000000
-#  undef OPEN_MAX
-#  define OPEN_MAX 10000000
+# ifndef OPEN_MAX
+#  define OPEN_MAX 1024
 # endif
 
 size_t	ft_strlen(const char *s);
