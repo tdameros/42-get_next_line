@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdameros <tdameros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tdameros <tdameros@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 23:06:16 by tdameros          #+#    #+#             */
-/*   Updated: 2022/11/10 23:46:31 by tdameros         ###   ########lyon.fr   */
+/*   Created: 2022/11/11 12:17:01 by tdameros          #+#    #+#             */
+/*   Updated: 2022/11/11 12:17:07 by tdameros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
-size_t	line_start_in_buf(char *buf, size_t buf_size)
+/**
+ * @param buf
+ * @param buf_size
+ * @return size_t start index
+ */
+size_t	start_line_in_buf(char *buf, size_t buf_size)
 {
 	size_t	index;
 
@@ -22,7 +27,13 @@ size_t	line_start_in_buf(char *buf, size_t buf_size)
 	return (index);
 }
 
-size_t	line_len_in_buf(char *buf, size_t buf_size, size_t start)
+/**
+ * @param buf
+ * @param buf_size
+ * @param start index
+ * @return len of the line
+ */
+size_t	len_line_in_buf(char *buf, size_t buf_size, size_t start)
 {
 	size_t	len;
 
@@ -37,7 +48,14 @@ size_t	line_len_in_buf(char *buf, size_t buf_size, size_t start)
 	return (len);
 }
 
-char	*subline_in_buf(char *buf, size_t start, size_t len)
+/**
+ * Allocate sub line in the buffer with malloc.
+ * @param buf
+ * @param start
+ * @param len
+ * @return char * line allocate with malloc
+ */
+char	*sub_line_in_buf(char *buf, size_t start, size_t len)
 {
 	size_t	index_substr;
 	char	*substr;
@@ -67,6 +85,12 @@ size_t	ft_strlen(const char *s)
 	return (end_ptr - s);
 }
 
+/**
+ * Join 2 strings and free them.
+ * @param s1
+ * @param s2
+ * @return char * allocate with malloc
+ */
 char	*strjoin_free(char *s1, char *s2)
 {
 	size_t	len_s1;
