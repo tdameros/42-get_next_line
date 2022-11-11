@@ -29,7 +29,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || fd >= OPEN_MAX)
 		return (NULL);
-	if (is_empty_buf(buf[fd], BUFFER_SIZE) && read(fd, buf[fd], BUFFER_SIZE) <= 0)
+	if (is_empty_buf(buf[fd], BUFFER_SIZE)
+		&& read(fd, buf[fd], BUFFER_SIZE) <= 0)
 		return (NULL);
 	line = extract_line_in_buf(buf[fd], BUFFER_SIZE, &is_line);
 	if (line == NULL)

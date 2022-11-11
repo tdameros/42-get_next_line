@@ -47,6 +47,7 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
+
 /**
  * @param buf
  * @param buf_size
