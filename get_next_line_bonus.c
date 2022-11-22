@@ -6,7 +6,7 @@
 /*   By: tdameros <tdameros@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:17:46 by tdameros          #+#    #+#             */
-/*   Updated: 2022/11/11 12:17:53 by tdameros         ###   ########lyon.fr   */
+/*   Updated: 2022/11/23 00:34:49 by tdameros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	while (is_line == 0)
 	{
-		if (read(fd, buf[fd], BUFFER_SIZE) == 0)
+		if (read(fd, buf[fd], BUFFER_SIZE) <= 0)
 			return (line);
 		line_temp = extract_line_in_buf(buf[fd], BUFFER_SIZE, &is_line);
 		if (line_temp == NULL)
