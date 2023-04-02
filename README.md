@@ -30,12 +30,12 @@ int main(void)
     char *line;
 
     fd = open("file.txt", O_RDONLY);
-	line = get_next_line(fd);
+    line = get_next_line(fd);
     while (line != NULL)
     {
         // Do something with the line
         free(line);
-	    line = get_next_line(fd);
+	line = get_next_line(fd);
     }
     return (0);
 }
