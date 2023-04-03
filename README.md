@@ -1,11 +1,11 @@
 # GNL Project
 
 ## Description
-The get_next_line project is a part of the 42 school curriculum and requires students to create a function that reads a line from a file descriptor. The function should be able to handle multiple file descriptors and read from them independently without losing the reading thread.
+The get_next_line project is a component of the 42 school curriculum that requires creating a function capable of reading a line from a file descriptor. The function should be able to handle multiple file descriptors and read from them independently without losing the reading thread.
 
 ## Description
 
-The get_next_line function reads one line at a time from a file descriptor. Each time the function is called, it returns the next line from the file until the end of the file is reached. The function is also able to handle multiple file descriptors at the same time.
+The get_next_line function reads one line at a time from a file descriptor. Each time the function is called, it returns the next line from the file until the end of the file is reached.
 
 The function prototype is as follows:
 
@@ -21,6 +21,7 @@ To use the get_next_line function, simply include the header file `get_next_line
 
 ```c
 #include <stdlib.h>
+#include <fcntl.h>
 
 #include "get_next_line.h"
 
@@ -43,4 +44,4 @@ int main(void)
 
 ## Conclusion
 
-The get_next_line project is an essential project for any programmer as it teaches you how to read from a file descriptor and handle multiple file descriptors. By implementing this function, you will gain a deeper understanding of how file I/O works in C and how to write efficient code. Good luck!
+The get_next_line project is an essential project for any programmer as it teaches how to read from a file descriptor and handle multiple file descriptors. By implementing this function, one will gain a deeper understanding of how file I/O works in C and how to write efficient code.
